@@ -1,0 +1,1 @@
+pscp -pw Pa55w.rd123 -r sshuser@<clustername>-ssh.azurehdinsight.net:/var/log/syslog e:/Logfiles/syslog/

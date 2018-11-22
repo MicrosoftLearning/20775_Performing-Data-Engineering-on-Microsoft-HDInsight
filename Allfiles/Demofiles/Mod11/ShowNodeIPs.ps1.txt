@@ -1,0 +1,11 @@
+﻿# Get the NICs for the HDInsight workernodes (names contain 'workernode').
+Login-AzureRmAccount
+$resourceGroupName = "<resource group>"
+$nodes = Get-AzureRmNetworkInterface `
+    -ResourceGroupName $resourceGroupName `
+    | where-object {$_.Name -like "*workernode*"}
+
+# Loop through each node and get the IP address
+foreach($node in $nodes) {
+    $node.IpConfigurations.PrivateIpAddress
+}

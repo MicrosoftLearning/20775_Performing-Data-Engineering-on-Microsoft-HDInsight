@@ -1,0 +1,7 @@
+yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar wordcount /example/data/gutenberg/davinci.txt /example/data/davinciwordcount
+
+yarn application -list -appStates FINISHED
+
+yarn logs -applicationId <applicationId> > wordcount.log
+
+pscp -pw Pa55w.rd123 sshuser@<clustername>-ssh.azurehdinsight.net:/home/sshuser/wordcount.log e:/Logfiles/yarn/ 

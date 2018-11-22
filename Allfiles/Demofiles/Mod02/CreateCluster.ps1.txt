@@ -1,0 +1,20 @@
+﻿# Create an HDInsight cluster
+$credentials = Get-Credential -Message "Enter Cluster user credentials(HTTP)" -UserName "hadmin"
+$sshCredentials = Get-Credential -Message "Enter SSH user credentials" -UserName "sadmin"
+
+# The location of the HDInsight cluster must be in the same data center as the Storage account.
+$location = Get-AzureRmStorageAccount -ResourceGroupName $resourceGroupName -StorageAccountName $defaultStorageAccountName | %{$_.Location}
+Write-Host -ForegroundColor Green "Creating HDInsight Hadoop Cluster..."
+New-AzureRmHDInsightCluster `
+    -ClusterName $clusterName `
+    -ResourceGroupName $resourceGroupName `
+    -HttpCredential $credentials `
+    -Location $location `
+    -DefaultStorageAccountName "$defaultStorageAccountName.blob.core.windows.net" `
+    -DefaultStorageAccountKey $defaultStorageAccountKey `
+    -DefaultStorageContainer $defaultStorageContainerName  `
+    -ClusterSizeInNodes $clusterNodes `
+    -ClusterType Hadoop `
+    -OSType Linux `
+    -Version "3.6" `
+    -SshCredential $sshCredentials 

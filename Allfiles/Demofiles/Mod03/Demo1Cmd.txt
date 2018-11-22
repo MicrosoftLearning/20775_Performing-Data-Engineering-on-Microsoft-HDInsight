@@ -1,0 +1,1 @@
+ssh sadmin@<clustername>-ssh.azurehdinsight.net -C2qTnNf -D 9876

@@ -1,0 +1,42 @@
+On first cluster:
+=================
+
+sudo bash
+
+cd /usr/hdp/current/kafka-broker/config
+
+nano source-cluster.properties
+
+bootstrap.servers=<mirror-kafka-broker>:9092
+
+nano dest-cluster.properties
+
+bootstrap.servers=<source-kafka-broker>:9092
+group.id=mirror-group
+
+cd /usr/hdp/current/kafka-broker/bin
+
+./kafka-topics.sh --zookeeper <zookeeper>:2181 --create --topic topic1 --partitions 1 --replication-factor 1
+
+./kafka-mirror-maker.sh --producer.config ../conf/source-cluster.properties --consumer.config ../conf/dest-cluster.properties --whitelist=topic1 &
+
+
+On mirror cluster:
+=================
+
+sudo bash
+
+cd /usr/hdp/current/kafka-broker/bin
+
+./kafka-console-consumer.sh --bootstrap-server <source-kafka-broker>:9092 --whitelist topic1 --from-beginning
+
+
+On first cluster:
+=================
+
+./kafka-console-producer.sh --broker-list <source-kafka-broker>:9092 --topic topic1
+
+Hello
+World
+Hello
+Kafka

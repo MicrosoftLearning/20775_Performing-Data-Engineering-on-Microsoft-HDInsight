@@ -1,0 +1,23 @@
+﻿# Define file input function
+
+Function Get-FileName($initialDirectory)
+{
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+    
+    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.initialDirectory = $initialDirectory
+    $OpenFileDialog.filter = "TXT (*.txt)| *.txt"
+    $OpenFileDialog.ShowDialog() | Out-Null
+    $OpenFileDialog.filename
+}
+
+#Open the file
+
+$inputfile = Get-FileName
+#$inputdata = get-content $inputfile
+
+#Remove all CR and LF characters from exported certificate file
+
+$original_file = $inputfile
+$text = [IO.File]::ReadAllText($original_file) -replace "`r`n", ""
+[IO.File]::WriteAllText($original_file, $text)

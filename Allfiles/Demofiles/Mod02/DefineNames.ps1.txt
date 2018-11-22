@@ -1,0 +1,12 @@
+﻿$token ="<your name><date>"                         # Use <your name><date> - when added to "store" must be globally unique
+$subscriptionName = "Azure Pass"                    # Provide your Subscription or Azure Pass 
+$resourceGroupName = $token + "rg"                  # Generate a Resource Group name
+$clusterName = $token + "hdi"                       # Generate a Cluster name
+$defaultStorageAccountName = $token + "store"       # Generate a Storage account name
+$defaultStorageContainerName = $token + "container" # Generate Storage container name
+$location = "West Europe"                           # Change the location if needed
+$clusterNodes = 1                                   # The number of nodes in the HDInsight cluster 
+
+# Sign in to Azure
+Write-Host -ForegroundColor Green "Signing in to Azure with Microsoft Account"
+Login-AzureRmAccount 

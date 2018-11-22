@@ -1,0 +1,3 @@
+﻿# Delete Resource Group.
+Write-Host -ForegroundColor Green "Deleting $resourceGroupName resource group ..."
+Remove-AzureRmResourceGroup -Name $resourceGroupName

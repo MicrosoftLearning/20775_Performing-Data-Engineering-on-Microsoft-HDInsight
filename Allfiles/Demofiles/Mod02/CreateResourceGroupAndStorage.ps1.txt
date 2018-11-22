@@ -1,0 +1,16 @@
+﻿# Create an Azure Resource Group
+Write-Host -ForegroundColor Green "Creating New Resource Group..."
+New-AzureRmResourceGroup -Name $resourceGroupName -Location $location 
+
+# Create an Azure Storage account and container used as the default storage
+Write-Host -ForegroundColor Green "Creating Azure storage account..."
+New-AzureRmStorageAccount `
+    -ResourceGroupName $resourceGroupName `
+    -StorageAccountName $defaultStorageAccountName `
+    -Location $location `
+    -Type Standard_LRS
+$defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -Name $defaultStorageAccountName -ResourceGroupName $resourceGroupName)[0].Value
+$destContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
+
+Write-Host -ForegroundColor Green "Creating Azure storage Container with default storage..."
+New-AzureStorageContainer -Name $defaultStorageContainerName -Context $destContext

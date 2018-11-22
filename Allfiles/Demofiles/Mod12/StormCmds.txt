@@ -1,0 +1,17 @@
+sudo bash
+
+storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar org.apache.storm.starter.WordCountTopology wordcount
+
+storm list
+
+storm monitor wordcount
+
+storm monitor wordcount -m count
+
+storm rebalance wordcount -n <workers>
+
+storm list
+
+storm kill wordcount -w 15
+
+storm list

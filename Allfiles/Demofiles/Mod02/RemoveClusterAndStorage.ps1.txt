@@ -1,0 +1,7 @@
+﻿# Delete HDInsight cluster.
+Write-Host -ForegroundColor Green "Deleting $clusterName HDInsight cluster..."
+Remove-AzureRmHDInsightCluster -ClusterName $clusterName
+
+# Delete storage account.
+Write-Host -ForegroundColor Green "Deleting $defaultStorageAccountName storage account..."
+Remove-AzureRmStorageAccount -StorageAccountName $defaultStorageAccountName -ResourceGroupName $resourceGroupName

@@ -1,6 +1,6 @@
 # 20775A: Performing Data Engineering on Microsoft HDInsight
 
-These folders contain the lab files and demo files for each module. You should download them to the E:\LabFiles and E:\Demofiles folders on the 20775A-LON-DEV virtual machine, replacing any existing files in these folders.
+These folders contain the lab files and demo files for each module. You should download them to the **E:\Labfiles** and **E:\Demofiles** folders on the **20775A-LON-DEV** virtual machine, replacing any existing files in these folders.
 
 ---
 

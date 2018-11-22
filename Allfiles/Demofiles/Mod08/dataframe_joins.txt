@@ -1,0 +1,27 @@
+from pyspark.sql import Row
+data1 = [('Alpha', 1), ('Bravo', 2), ('Charlie', 3)]
+df1 = sqlContext.createDataFrame(sc.parallelize(data1), ['name', 'id'])
+df1.collect()
+
+
+data2 = [('Alpha', 1), ('Charlie', 3), ('Delta',4)]
+df2 = sqlContext.createDataFrame(sc.parallelize(data2), ['name', 'id'])
+df2.collect()
+
+
+df1.join(df2,'id').collect()
+
+
+df1.join(df2,'id','left_outer').collect()
+
+
+df1.join(df2,'id','right_outer').collect()
+
+
+df1.join(df2,'id','outer').collect()
+
+
+df1.join(df2,'id','left_semi').collect()
+
+
+df1.join(df2,df1.id == df2.id).collect()

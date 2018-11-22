@@ -1,0 +1,5 @@
+$creds=Get-Credential -Message "Enter Cluster user credentials (HTTP)" -UserName "hadmin"
+$resp = Invoke-WebRequest -Uri "https://<cluster name>.azurehdinsight.net/api/v1/clusters/<cluster name>/hosts" `
+      -Credential $creds
+  $respObj = ConvertFrom-Json $resp.Content
+  $respObj.items.Hosts.host_name 
